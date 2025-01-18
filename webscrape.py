@@ -93,7 +93,7 @@ def get_web_text(file_url):
     for element in p_elements:
       text = element.inner_text()
       tok += len(encoder.encode(text))
-      if tok >=1000 or elem > 20:
+      if tok >=1000 or elem > 30:
         break
       
       p_lst.append(text)
@@ -115,9 +115,9 @@ def store_verdict(verdict_string, user_input):
   else:
     verdict = "INVALID"
 
-  verdict_string = "".join(words[1:]) 
+  verdict_string = " ".join(words[1:]) 
 
-  row_data = [user_input["url"], user_input["email"],  verdict, verdict_string]
+  row_data = [user_input["name"], user_input["url"], user_input["email"],  verdict, verdict_string]
   with open("results.csv", mode='a', newline='', encoding='utf-8') as csvfile:
       csvwriter = csv.writer(csvfile)
 

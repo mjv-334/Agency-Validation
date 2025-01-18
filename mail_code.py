@@ -12,7 +12,7 @@ def send_mail(row_data):
     sender_email = config.get('email_id')
     password = config.get('email_password')
 
-    receiver_email = row_data[1]
+    receiver_email = row_data[2]
 
     # Set up the SMTP server (Gmail in this case)
     smtp_server = "smtp.gmail.com"
@@ -22,12 +22,12 @@ def send_mail(row_data):
     msg = EmailMessage()
     msg["From"] = sender_email
     msg["To"] = receiver_email
-    msg["Subject"] = "Webiste application " + row_data[2]
+    msg["Subject"] = "Webiste application " + row_data[3]
     # Set the email content (plain text)
-    if row_data[2] == "Accepted":
-        msg.set_content(f"Thank you for your response for the website {row_data[0]}. We’re happy to inform you that you’ve successfully met the criteria and have been accepted. We appreciate your continued engagement with our company.")
-    elif row_data[2] == "Denied":
-        msg.set_content(f"Thank you for your response for the website {row_data[0]}. We regret to inform you the website doesnt meet the requirements. We appreciate your understanding.")
+    if row_data[3] == "Accepted":
+        msg.set_content(f"Thank you for your response for {row_data[0]}, website: {row_data[1]}. We’re happy to inform you that you’ve successfully met the criteria and have been accepted. We appreciate your continued engagement with our company.")
+    elif row_data[3] == "Denied":
+        msg.set_content(f"Thank you for your response for {row_data[0]}, website: {row_data[1]}. We regret to inform you the website doesnt meet the requirements. We appreciate your understanding.")
     else:
         return False
 
